@@ -22,7 +22,6 @@ public class Date {
         assert false;
         checkString("1/1/1899");
     }
-
     static private boolean checkString(final String dateAsString)
     {
         Matcher m = DATE_PATTERN.matcher(dateAsString) ;
