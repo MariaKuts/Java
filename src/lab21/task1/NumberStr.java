@@ -1,0 +1,65 @@
+package lab21.task1;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class NumberStr
+{
+    public static void main(String args[])
+    {
+        int[] k = {1,2,3,4,5,6,7} ;
+        Integer[] i = {1,2,3,4,5,6,7} ;
+        String[] s = {"a","bcd","fdr","y","e"};
+
+        ArrayList AL1 = TestNumberStr.ConvertArrayToList(i);
+        for(int j = 0; j < AL1.size(); j++) System.out.print(AL1.get(j));
+
+        ArrayList AL2 = TestNumberStr.ConvertArrayToList(s);
+        for(int j = 0; j < AL2.size(); j++) System.out.print(AL2.get(j));
+
+        Array1<Integer> iA2 = new Array1(i);
+        System.out.println("\n" + iA2.get(6));
+
+        TestNumberStr.Filelist("C:\\");
+    }
+}
+class TestNumberStr
+{
+    public static <T> ArrayList<T> ConvertArrayToList(T[] a)
+    {
+        ArrayList<T> temp = new ArrayList<T>();
+        for(T t:a) temp.add(t);
+        return temp;
+    }
+    public static void Filelist(String path)
+    {
+        File f = new File(path);
+        String[] fArray = null;
+        if (f.exists() || f.isDirectory()) fArray = f.list(null);
+        else System.out.print("Папка не найдена");
+        ArrayList<String> list = new ArrayList(Arrays.asList(fArray));
+        for (int i = 0; i < list.size(); i++) {if (i < 5) System.out.println(list.get(i));}
+    }
+}
+class Array1 <T>
+{
+    public Array1 (T[] t)
+    {
+        this.AL = new ArrayList<T>();
+        for(T i: t) AL.add(i);
+    }
+    public T get(int index) {return this.AL.get(index);}
+    private ArrayList<T> AL;
+}
+
+class Array2 <T>
+{
+    public Array2 (Object[] t)
+    {
+        this.AL = new ArrayList();
+        for(Object i: t) AL.add(i);
+    }
+    public T get(int index){return (T)this.AL.get(index);}
+    private ArrayList<Object> AL;
+}
+
